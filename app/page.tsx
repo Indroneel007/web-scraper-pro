@@ -49,7 +49,6 @@ export default function Home() {
     <main className="min-h-screen bg-gray-50">
       <div className="max-w-4xl mx-auto px-4 py-12">
         <div className="text-center mb-10">
-<<<<<<< HEAD
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Web Scraper</h1>
           <p className="text-lg text-gray-600">
             Enter one or more URLs to scrape content from websites
@@ -57,15 +56,6 @@ export default function Home() {
         </div>
 
         <div className="bg-black p-6 rounded-lg shadow-md">
-=======
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Multi-URL Web Scraper</h1>
-          <p className="text-lg text-gray-600">
-            Enter multiple URLs to scrape content from websites in parallel
-          </p>
-        </div>
-
-        <div className="bg-white p-6 rounded-lg shadow-md">
->>>>>>> 81f97bb (iantial commit)
           <UrlForm onSubmit={handleSubmit} isLoading={isLoading} />
           
           {error && (
