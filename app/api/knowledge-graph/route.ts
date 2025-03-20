@@ -35,6 +35,38 @@ interface ProfileInput {
   additionalContext?: string[];
 }
 
+// Define interface for OpenAI response data structure
+interface OpenAIToolsUsed {
+  'High Probability': string[];
+  'Medium Probability': string[];
+  'Low Probability': string[];
+}
+
+interface OpenAIAttributeRanges {
+  'Pattern Recognition': string;
+  'Associative Memory': string;
+  'Emotional Influence': string;
+  'Heuristic Processing': string;
+  'Parallel Processing': string;
+  'Implicit Learning': string;
+  'Reflexive Responses': string;
+  'Cognitive Biases': string;
+  'Logical Reasoning': string;
+  'Abstract Thinking': string;
+  'Deliberative Decision-Making': string;
+  'Sequential Processing': string;
+  'Cognitive Control (Inhibition)': string;
+  'Goal-Oriented Planning': string;
+  'Meta-Cognition': string;
+}
+
+interface OpenAIGraphData {
+  'Tools Used': OpenAIToolsUsed;
+  'Biggest Pain Points': OpenAIToolsUsed;
+  'Attribute Ranges': OpenAIAttributeRanges;
+  'Education Level & Learning Approach': string;
+}
+
 // Define interface for knowledge graph output
 interface KnowledgeGraph {
   toolsUsed: {
@@ -503,7 +535,7 @@ function fallbackGenerateKnowledgeGraph(profileInput: ProfileInput): KnowledgeGr
 }
 
 // Function to validate and format the knowledge graph
-function formatKnowledgeGraph(data: any, profileInput: ProfileInput): KnowledgeGraph {
+function formatKnowledgeGraph(data: OpenAIGraphData, profileInput: ProfileInput): KnowledgeGraph {
   // Initialize with default values
   const defaultGraph = fallbackGenerateKnowledgeGraph(profileInput);
 
@@ -589,7 +621,7 @@ function formatKnowledgeGraph(data: any, profileInput: ProfileInput): KnowledgeG
 }
 
 // Helper function to check if an attribute level is valid
-function isValidLevel(level: any): boolean {
+function isValidLevel(level: string | undefined): boolean {
   if (typeof level !== 'string') return false;
   const validLevels = ['Low', 'Medium', 'High'];
   return validLevels.includes(level);
